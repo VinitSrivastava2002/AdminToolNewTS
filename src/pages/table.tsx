@@ -20,27 +20,12 @@ import {
   GridSlots,
 } from "@mui/x-data-grid";
 
-// Define the initial data structure with new fields
-const initialRows: GridRowsProp = [
-  {
-    id: 1,
-    name: "Name1",
-    prefix: "Prefix1",
-    suffix: "Suffix1",
-    digits: "1234",
-    incrementby: "1",
-    isenable: "Yes",
-  },
-  {
-    id: 2,
-    name: "Name2",
-    prefix: "Prefix2",
-    suffix: "Suffix2",
-    digits: "5678",
-    incrementby: "2",
-    isenable: "No",
-  },
-];
+// Interface for dynamic fields passed from the parent
+interface TableProps {
+  fields: Array<{ field: string; headerName: string }>;
+  rows: GridRowsProp;
+  setRows: React.Dispatch<React.SetStateAction<GridRowsProp>>;
+}
 
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -51,17 +36,14 @@ interface EditToolbarProps {
 
 function EditToolbar(props: EditToolbarProps) {
   const { setRows, setRowModesModel } = props;
-  // const {nextId, set}
 
   const handleClick = () => {
     setRows((oldRows) => {
       const nextId = Math.max(...oldRows.map((row) => row.id)) + 1; // Calculate next ID
-      console.log(nextId);
       return [
         ...oldRows,
         {
-          _id: nextId,
-
+          id: nextId,
           name: "",
           prefix: "",
           suffix: "",
@@ -72,10 +54,6 @@ function EditToolbar(props: EditToolbarProps) {
         },
       ];
     });
-    // setRowModesModel((oldModel) => ({
-    //   ...oldModel,
-    //   [nextId]: { mode: GridRowModes.Edit, fieldToFocus: "name" },
-    // }));
   };
 
   return (
@@ -87,8 +65,8 @@ function EditToolbar(props: EditToolbarProps) {
   );
 }
 
-export default function Table() {
-  const [rows, setRows] = useState(initialRows);
+// Define the Table component
+const Table: React.FC<TableProps> = ({ fields, rows, setRows }) => {
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
 
   const handleRowEditStop: GridEventListener<"rowEditStop"> = (
@@ -126,14 +104,6 @@ export default function Table() {
 
   // Process row updates and validate fields
   const processRowUpdate = (newRow: GridRowModel) => {
-    const { name, prefix, suffix, digits, incrementby, isenable } = newRow;
-
-    // Check for mandatory fields
-    if (!name || !prefix || !suffix || !digits || !incrementby || !isenable) {
-      alert("All fields are mandatory. Please fill in all details.");
-      throw new Error("Validation error: Missing mandatory fields.");
-    }
-
     const updatedRow = { ...newRow, isNew: false };
     setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
     return updatedRow;
@@ -143,56 +113,26 @@ export default function Table() {
     setRowModesModel(newRowModesModel);
   };
 
+  // Dynamically generate columns based on the fields passed from the parent component
   const columns: GridColDef[] = [
     {
       field: "id",
       headerName: "ID",
       width: 150,
       type: "string",
-      editable: true,
+      editable: false,
     },
-    {
-      field: "name",
-      headerName: "Name",
+    ...fields.map(({ field, headerName }) => ({
+      field,
+      headerName,
       width: 150,
-      type: "string",
       editable: true,
-    },
-    {
-      field: "prefix",
-      headerName: "Prefix",
-      width: 150,
-      type: "string",
-      editable: true,
-    },
-    {
-      field: "suffix",
-      headerName: "Suffix",
-      width: 150,
-      type: "string",
-      editable: true,
-    },
-    {
-      field: "digits",
-      headerName: "Digits",
-      width: 150,
-      type: "number",
-      editable: true,
-    },
-    {
-      field: "incrementby",
-      headerName: "Increment By",
-      width: 150,
-      type: "number",
-      editable: true,
-    },
-    { field: "isenable", headerName: "Is Enabled", width: 150, editable: true },
+    })),
     {
       field: "actions",
       type: "actions",
       headerName: "Actions",
       width: 100,
-      cellClassName: "actions",
       getActions: ({ id }) => {
         const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
 
@@ -201,34 +141,26 @@ export default function Table() {
             <GridActionsCellItem
               icon={<SaveIcon />}
               label="Save"
-              sx={{
-                color: "primary.main",
-              }}
               onClick={handleSaveClick(id)}
             />,
             <GridActionsCellItem
-              icon={<CancelIcon color="primary" />}
+              icon={<CancelIcon />}
               label="Cancel"
-              className="textPrimary"
               onClick={handleCancelClick(id)}
-              color="inherit"
             />,
           ];
         }
 
         return [
           <GridActionsCellItem
-            icon={<EditIcon color="primary" />}
+            icon={<EditIcon />}
             label="Edit"
-            className="textPrimary"
             onClick={handleEditClick(id)}
-            color="inherit"
           />,
           <GridActionsCellItem
-            icon={<DeleteIcon color="primary" />}
+            icon={<DeleteIcon />}
             label="Delete"
             onClick={handleDeleteClick(id)}
-            color="inherit"
           />,
         ];
       },
@@ -236,18 +168,7 @@ export default function Table() {
   ];
 
   return (
-    <Box
-      sx={{
-        height: 500,
-        width: "100%",
-        "& .actions": {
-          color: "text.secondary",
-        },
-        "& .textPrimary": {
-          color: "text.primary",
-        },
-      }}
-    >
+    <Box sx={{ height: 350, width: "100%", backgroundColor: "white" }}>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -265,4 +186,6 @@ export default function Table() {
       />
     </Box>
   );
-}
+};
+
+export default Table;

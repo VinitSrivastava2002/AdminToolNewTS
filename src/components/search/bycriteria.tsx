@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material";
 import SubHeader from "../subheader";
 import DropDown from "../dropdown";
 import Table from "../../pages/table";
+import { useState } from "react";
 
 interface SearchByFieldNameProps {
   ServiceStatusItems: string[];
@@ -12,6 +13,38 @@ export default function SearchByFieldName({
   ServiceStatusItems,
   HandlerItems,
 }: SearchByFieldNameProps) {
+  // Define the field names you want to pass as props
+  const fields = [
+    { field: "name", headerName: "Name" },
+    { field: "prefix", headerName: "Prefix" },
+    { field: "suffix", headerName: "Suffix" },
+    { field: "digits", headerName: "Digits" },
+    { field: "incrementby", headerName: "Increment By" },
+    { field: "isenable", headerName: "Is Enabled" },
+  ];
+
+  // Define the initial rows in the parent component
+  const [rows, setRows] = useState([
+    {
+      id: 1,
+      name: "Name1",
+      prefix: "Prefix1",
+      suffix: "Suffix1",
+      digits: "1234",
+      incrementby: "1",
+      isenable: "Yes",
+    },
+    {
+      id: 2,
+      name: "Name2",
+      prefix: "Prefix2",
+      suffix: "Suffix2",
+      digits: "5678",
+      incrementby: "2",
+      isenable: "No",
+    },
+  ]);
+
   return (
     <Box mb="1px">
       <SubHeader Title="Search by Criteria"></SubHeader>
@@ -82,7 +115,7 @@ export default function SearchByFieldName({
           </Button>
         </Box>
       </Box>
-      <Table />
+      <Table fields={fields} rows={rows} setRows={setRows} />
     </Box>
   );
 }
