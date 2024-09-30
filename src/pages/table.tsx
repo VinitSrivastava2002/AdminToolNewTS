@@ -168,7 +168,7 @@ const Table: React.FC<TableProps> = ({ fields, rows, setRows }) => {
   ];
 
   return (
-    <Box sx={{ height: 350, width: "100%", backgroundColor: "white" }}>
+    <Box sx={{ height: "100%", width: "100%", backgroundColor: "white" }}>
       <DataGrid
         rows={rows}
         columns={columns}
