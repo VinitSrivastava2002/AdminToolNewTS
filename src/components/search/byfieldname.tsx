@@ -38,15 +38,16 @@ export default function SearchByFieldName({
 
   return (
     <>
-      <Box mb="20px">
+      <Box mb="20px" sx={{ height: "100%" }}>
         <SubHeader Title={"Search By " + Label}></SubHeader>
         <Paper
           component="form"
           sx={{
-            p: "2px 4px",
+            marginBottom: "20px",
+            padding: "2px 4px",
             display: "flex",
             alignItems: "center",
-            width: "max",
+            width: "72.5rem",
           }}
         >
           <InputBase

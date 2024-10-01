@@ -56,17 +56,15 @@ export default function SearchByFieldName({
 
       <Box
         display="grid"
-        gridTemplateColumns="repeat(6, 1fr)"
+        gridTemplateColumns="repeat(5, 1fr)"
         gridAutoRows="50px"
-        sx={{ gap: "20px", marginBlock: "20px" }} //, backgroundColor: "#ffff"
+        sx={{
+          gap: "10px",
+          marginBlock: "20px",
+          width: "100%",
+        }} //, backgroundColor: "#ffff"
       >
-        <Box
-          gridColumn="span 1"
-          backgroundColor="primary"
-          display="flex"
-          // alignItems="start"
-          // justifyContent="center"
-        >
+        <Box gridColumn="span 1" backgroundColor="primary" display="flex">
           <DateTimePickerComponent
             label="Start Date"
             value={startDate}
@@ -90,7 +88,7 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="center"
+          alignItems="end"
           justifyContent="center"
         >
           <DropDown
@@ -102,7 +100,7 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="center"
+          alignItems="end"
           justifyContent="center"
         >
           <DropDown Label="Handlers" Items={HandlerItems}></DropDown>
@@ -111,8 +109,8 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="center"
-          justifyContent="center"
+          alignItems="end"
+          justifyContent="left"
         >
           <Button
             sx={{
@@ -120,7 +118,7 @@ export default function SearchByFieldName({
               color: "white",
               fontSize: "14px",
               fontWeight: "bold",
-              padding: "10px 20px",
+              paddingBlock: "8px",
             }}
           >
             Search

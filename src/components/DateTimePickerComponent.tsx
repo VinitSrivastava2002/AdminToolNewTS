@@ -18,15 +18,23 @@ export const DateTimePickerComponent: React.FC<
   return (
     <Box
       sx={{
-        minWidth: "250px",
+        // width: "250px",
         // backgroundColor: "yellow",
+        padding: "0px",
         display: "flex",
-        alignItems: "center",
+        alignItems: "center", // Center vertically
+        justifyContent: "center", // Center horizontally
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["DateTimePicker", "DateTimePicker"]}>
+        <DemoContainer components={["DateTimePicker"]}>
           <DateTimePicker
+            sx={{
+              ".MuiInputBase-root": {
+                backgroundColor: "#ffff",
+                // width: "200px", // You can adjust the width here if needed
+              },
+            }}
             label={label}
             // sx={{ minWidth: "250px" }}
             slotProps={{ textField: { size: "small" } }}

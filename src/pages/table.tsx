@@ -168,8 +168,10 @@ const Table: React.FC<TableProps> = ({ fields, rows, setRows }) => {
   ];
 
   return (
-    <Box sx={{ height: "100%", width: "100%", backgroundColor: "white" }}>
+    ///sx={{ height: "100%", width: "100%" }}
+    <Box>
       <DataGrid
+        sx={{ backgroundColor: "#ffff", width: "72.5rem", height: "full" }}
         rows={rows}
         columns={columns}
         editMode="row"

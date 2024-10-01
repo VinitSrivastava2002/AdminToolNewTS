@@ -15,7 +15,7 @@ function App() {
     <Router>
       <>
         <div className="app">
-          <SideBar></SideBar>
+          <SideBar />
           <div className="content">
             <TopBar></TopBar>
             <Routes>
