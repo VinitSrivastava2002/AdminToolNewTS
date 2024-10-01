@@ -16,12 +16,19 @@ export const DateTimePickerComponent: React.FC<
   DateTimePickerComponentProps
 > = ({ label, value, onChange }) => {
   return (
-    <Box sx={{ minWidth: "250px" }}>
+    <Box
+      sx={{
+        minWidth: "250px",
+        // backgroundColor: "yellow",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DateTimePicker", "DateTimePicker"]}>
           <DateTimePicker
             label={label}
-            sx={{ minWidth: 250 }}
+            // sx={{ minWidth: "250px" }}
             slotProps={{ textField: { size: "small" } }}
             value={value}
             onChange={onChange}

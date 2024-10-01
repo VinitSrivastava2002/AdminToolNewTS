@@ -58,14 +58,14 @@ export default function SearchByFieldName({
         display="grid"
         gridTemplateColumns="repeat(6, 1fr)"
         gridAutoRows="50px"
-        sx={{ gap: "20px", marginBlock: "20px" }}
+        sx={{ gap: "20px", marginBlock: "20px" }} //, backgroundColor: "#ffff"
       >
         <Box
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="center"
-          justifyContent="center"
+          // alignItems="start"
+          // justifyContent="center"
         >
           <DateTimePickerComponent
             label="Start Date"
