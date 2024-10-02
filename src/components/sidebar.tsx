@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 export default function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
-    <Sidebar collapsed={isCollapsed}>
+    <Sidebar className="sideBarBackground" collapsed={isCollapsed}>
       <Menu>
         <MenuItem
           icon={!isCollapsed && <MenuOutlinedIcon />}
