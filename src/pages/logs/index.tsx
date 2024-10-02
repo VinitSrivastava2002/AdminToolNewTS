@@ -18,7 +18,6 @@ import React, { useState } from "react";
 import SearchByFieldName from "../../components/search/byfieldname";
 import Table from "../table";
 import SearchIcon from "@mui/icons-material/Search";
-import { ClearIcon } from "@mui/x-date-pickers";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -171,7 +170,7 @@ const Logs = () => {
               gridColumn="span 1"
               // backgroundColor="#ffff"
               display="flex"
-              alignItems="end"
+              alignItems="center"
               justifyContent="left"
             >
               <FormControl className="search">
@@ -193,7 +192,7 @@ const Logs = () => {
               gridColumn="span 1"
               backgroundColor="primary"
               display="flex"
-              alignItems="end"
+              alignItems="center"
               justifyContent="left"
             >
               <Button
