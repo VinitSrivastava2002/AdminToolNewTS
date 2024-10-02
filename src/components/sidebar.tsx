@@ -77,7 +77,9 @@ export default function SideBar() {
             <MenuItem>IBM API</MenuItem>
             <MenuItem>Integration Service</MenuItem>
             <MenuItem>Windows Service</MenuItem>
-            <MenuItem>Error Logs</MenuItem>
+            <MenuItem component={<Link to="error-logs"></Link>}>
+              Error Logs
+            </MenuItem>
             <MenuItem component={<Link to="logs"></Link>}>Logs</MenuItem>
           </SubMenu>
           <SubMenu label="Configuration" icon={<Construction />}>

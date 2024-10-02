@@ -9,6 +9,7 @@ import { CaesarIntegrationLogs, MemberManagementLogs } from "./pages";
 
 import Dashboard from "./pages/dashboard/index";
 import Logs from "./pages/logs";
+import ErrorLogs from "./pages/errorlogs";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 element={<MemberManagementLogs />}
               />
               <Route path="logs" element={<Logs />} />
+              <Route path="error-logs" element={<ErrorLogs />} />
               <Route path="*" element={<Navigate replace to="dashboard" />} />
             </Routes>
           </div>
