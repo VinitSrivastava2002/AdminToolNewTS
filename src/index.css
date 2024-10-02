@@ -139,3 +139,10 @@ button {
 .paddingLeft {
   padding-left: 20px;
 }
+.ps-submenu-content {
+  background-color: #b1d4ea !important;
+}
+
+.MuiDataGrid-toolbarContainer {
+  display: none !important;
+}
