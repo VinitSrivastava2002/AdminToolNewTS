@@ -1,14 +1,20 @@
-import { Box, Button, Tab, Tabs } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputAdornment,
+  Tab,
+  Tabs,
+  TextField,
+} from "@mui/material";
 import Header from "../../components/header";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import dayjs, { Dayjs } from "dayjs";
-import {
-  DateTimePickerComponent,
-  InputField,
-} from "../../components/DateTimePickerComponent";
+import { DateTimePickerComponent } from "../../components/DateTimePickerComponent";
 import React, { useState } from "react";
 import SearchByFieldName from "../../components/search/byfieldname";
-import SearchByCriteria from "../../components/search/bycriteria";
+import SearchIcon from "@mui/icons-material/Search";
+
 import Table from "../table";
 
 interface TabPanelProps {
@@ -104,7 +110,7 @@ const ErrorLogs = () => {
           <Tabs value={value} onChange={handleChange}>
             <Tab label="Search Criteria" {...a11yProps(0)} />
             <Tab label="By Transaction Id" {...a11yProps(1)} />
-            <Tab label="By Search Text" {...a11yProps(2)} />
+            {/* <Tab label="By Search Text" {...a11yProps(2)} /> */}
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={1}>
@@ -158,31 +164,34 @@ const ErrorLogs = () => {
                 onChange={setEndDate}
               />
             </Box>
-            {/* <Box
-              gridColumn="span 1"
-              backgroundColor="#ffff"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              {" "}
-              <InputField label="ID" />
-            </Box>
             <Box
               gridColumn="span 1"
-              backgroundColor="#ffff"
+              // backgroundColor="#ffff"
               display="flex"
               alignItems="center"
-              justifyContent="center"
+              justifyContent="left"
             >
-              {" "}
-              <InputField label="Contains Text" />
-            </Box> */}
+              <FormControl className="search">
+                <TextField
+                  size="small"
+                  variant="outlined"
+                  // onChange={handleChange}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </FormControl>
+            </Box>
+
             <Box
               gridColumn="span 1"
               backgroundColor="primary"
               display="flex"
-              alignItems="end"
+              alignItems="centre"
               justifyContent="left"
             >
               <Button
