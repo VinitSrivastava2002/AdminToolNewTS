@@ -1,8 +1,11 @@
-import { Box, Button } from "@mui/material";
+import React from "react";
+import { Box, Button, TextField } from "@mui/material";
 import SubHeader from "../subheader";
 import DropDown from "../dropdown";
 import Table from "../../pages/table";
 import { useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { DateTimePickerComponent } from "../DateTimePickerComponent";
 
 interface SearchByFieldNameProps {
   ServiceStatusItems: string[];
@@ -44,41 +47,48 @@ export default function SearchByFieldName({
       isenable: "No",
     },
   ]);
+  const [startDate, setStartDate] = useState<Dayjs | null>(dayjs());
+  const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 
   return (
-    <Box mb="1px">
+    <Box sx={{ maxWidth: "100%" }}>
       <SubHeader Title="Search by Criteria"></SubHeader>
+
       <Box
         display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="20px"
-        gap="20px"
+        gridTemplateColumns="repeat(5, 1fr)"
+        gridAutoRows="50px"
+        sx={{
+          gap: "10px",
+          marginBlock: "20px",
+          width: "100%",
+        }} //, backgroundColor: "#ffff"
       >
-        <Box
-          gridColumn="span 4"
-          backgroundColor="primary"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <div>
-            Start Date:{" "}
-            <input
-              type="datetime-local"
-              id="startdate"
-              name="startdate"
-            ></input>
-          </div>
-          <div className="paddingLeft">
-            End Date:{" "}
-            <input type="datetime-local" id="enddate" name="enddate"></input>
-          </div>
+        <Box gridColumn="span 1" backgroundColor="primary" display="flex">
+          <DateTimePickerComponent
+            label="Start Date"
+            value={startDate}
+            onChange={setStartDate}
+          />
         </Box>
         <Box
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
           alignItems="center"
+          justifyContent="center"
+        >
+          <DateTimePickerComponent
+            label="End Date"
+            value={endDate}
+            onChange={setEndDate}
+          />
+        </Box>
+        <Box
+          gridColumn="span 1"
+          backgroundColor="primary"
+          display="flex"
+          alignItems="end"
           justifyContent="center"
         >
           <DropDown
@@ -90,7 +100,7 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="center"
+          alignItems="end"
           justifyContent="center"
         >
           <DropDown Label="Handlers" Items={HandlerItems}></DropDown>
@@ -99,8 +109,8 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="center"
-          justifyContent="center"
+          alignItems="end"
+          justifyContent="left"
         >
           <Button
             sx={{
@@ -108,7 +118,7 @@ export default function SearchByFieldName({
               color: "white",
               fontSize: "14px",
               fontWeight: "bold",
-              padding: "10px 20px",
+              paddingBlock: "8px",
             }}
           >
             Search
