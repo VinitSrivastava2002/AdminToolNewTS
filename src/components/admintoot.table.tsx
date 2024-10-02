@@ -5,11 +5,11 @@ import { tokens } from "../theme";
 
 // Define the types for the props
 interface DataTableProps {
-  doctors: Array<any>; // You can replace `any` with a specific type for doctors if available
+  ColumnHeaders: Array<any>; // You can replace `any` with a specific type for ColumnHeaders if available
   columns: GridColDef[];
 }
 
-const DataTable: React.FC<DataTableProps> = ({ doctors, columns }) => {
+const DataTable: React.FC<DataTableProps> = ({ ColumnHeaders, columns }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -46,7 +46,7 @@ const DataTable: React.FC<DataTableProps> = ({ doctors, columns }) => {
         },
       }}
     >
-      <DataGrid rows={doctors} columns={columns} />
+      <DataGrid rows={ColumnHeaders} columns={columns} />
     </Box>
   );
 };
