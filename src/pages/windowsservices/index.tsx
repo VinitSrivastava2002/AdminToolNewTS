@@ -3,6 +3,8 @@ import {
   Button,
   FormControl,
   InputAdornment,
+  InputBase,
+  Paper,
   Tab,
   Tabs,
   TextField,
@@ -10,12 +12,14 @@ import {
 import Header from "../../components/header";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import dayjs, { Dayjs } from "dayjs";
-import { DateTimePickerComponent } from "../../components/DateTimePickerComponent";
+import {
+  DateTimePickerComponent,
+  InputField,
+} from "../../components/DateTimePickerComponent";
 import React, { useState } from "react";
 import SearchByFieldName from "../../components/search/byfieldname";
-import SearchIcon from "@mui/icons-material/Search";
-
 import Table from "../table";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,7 +50,7 @@ function a11yProps(index: number) {
   };
 }
 
-const ErrorLogs = () => {
+const WindowsServices = () => {
   const [startDate, setStartDate] = useState<Dayjs | null>(dayjs());
   const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
   const [value, setValue] = React.useState(0);
@@ -89,7 +93,7 @@ const ErrorLogs = () => {
   return (
     <Box margin="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header Title="Error Logs" />
+        <Header Title="Windows Services" />
         <Box>
           <Button
             sx={{
@@ -109,7 +113,7 @@ const ErrorLogs = () => {
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange}>
             <Tab label="Search Criteria" {...a11yProps(0)} />
-            <Tab label="By Transaction Id" {...a11yProps(1)} />
+            <Tab label="By Row Id" {...a11yProps(1)} />
             {/* <Tab label="By Search Text" {...a11yProps(2)} /> */}
           </Tabs>
         </Box>
@@ -132,7 +136,7 @@ const ErrorLogs = () => {
         <CustomTabPanel value={value} index={0}>
           <Box
             display="grid"
-            gridTemplateColumns="repeat(4, 0.2fr)"
+            gridTemplateColumns="repeat(4, 1fr)"
             gridAutoRows="50px"
             sx={{ gap: "20px", marginBlock: "20px" }} //, backgroundColor: "#ffff"
           >
@@ -169,29 +173,15 @@ const ErrorLogs = () => {
               // backgroundColor="#ffff"
               display="flex"
               alignItems="center"
-              justifyContent="center"
+              justifyContent="left"
             >
-              <FormControl className="search">
-                <TextField
-                  size="small"
-                  variant="outlined"
-                  // onChange={handleChange}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </FormControl>
+              <InputField label="Service Job" />
             </Box>
-
             <Box
               gridColumn="span 1"
               backgroundColor="primary"
               display="flex"
-              alignItems="centre"
+              alignItems="center"
               justifyContent="left"
             >
               <Button
@@ -203,7 +193,7 @@ const ErrorLogs = () => {
                   paddingBlock: "8px",
                 }}
               >
-                Search
+                Find
               </Button>
             </Box>
           </Box>
@@ -214,4 +204,4 @@ const ErrorLogs = () => {
   );
 };
 
-export default ErrorLogs;
+export default WindowsServices;

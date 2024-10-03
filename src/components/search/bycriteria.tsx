@@ -58,7 +58,7 @@ export default function SearchByFieldName({
         gridTemplateColumns="repeat(5, 1fr)"
         gridAutoRows="50px"
         sx={{
-          gap: "10px",
+          gap: "20px",
           marginBlock: "20px",
           width: "100%",
         }} //, backgroundColor: "#ffff"
@@ -87,7 +87,7 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="end"
+          alignItems="center"
           justifyContent="center"
         >
           <DropDown
@@ -99,7 +99,7 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="end"
+          alignItems="center"
           justifyContent="center"
         >
           <DropDown Label="Handlers" Items={HandlerItems}></DropDown>
@@ -108,7 +108,7 @@ export default function SearchByFieldName({
           gridColumn="span 1"
           backgroundColor="primary"
           display="flex"
-          alignItems="end"
+          alignItems="center"
           justifyContent="left"
         >
           <Button

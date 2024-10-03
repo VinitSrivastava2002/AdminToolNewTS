@@ -76,7 +76,9 @@ export default function SideBar() {
             <MenuItem>Bulk SMS</MenuItem>
             <MenuItem>IBM API</MenuItem>
             <MenuItem>Integration Service</MenuItem>
-            <MenuItem>Windows Service</MenuItem>
+            <MenuItem component={<Link to="windows-services"></Link>}>
+              Windows Service
+            </MenuItem>
             <MenuItem component={<Link to="error-logs"></Link>}>
               Error Logs
             </MenuItem>

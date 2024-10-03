@@ -134,7 +134,7 @@ const Logs = () => {
         <CustomTabPanel value={value} index={0}>
           <Box
             display="grid"
-            gridTemplateColumns="repeat(6, 1fr)"
+            gridTemplateColumns="repeat(4, 0.2fr)"
             gridAutoRows="50px"
             sx={{ gap: "20px", marginBlock: "20px" }} //, backgroundColor: "#ffff"
           >

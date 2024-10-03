@@ -10,6 +10,7 @@ import { CaesarIntegrationLogs, MemberManagementLogs } from "./pages";
 import Dashboard from "./pages/dashboard/index";
 import Logs from "./pages/logs";
 import ErrorLogs from "./pages/errorlogs";
+import WindowsServices from "./pages/windowsservices";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               />
               <Route path="logs" element={<Logs />} />
               <Route path="error-logs" element={<ErrorLogs />} />
+              <Route path="windows-services" element={<WindowsServices />} />
               <Route path="*" element={<Navigate replace to="dashboard" />} />
             </Routes>
           </div>
